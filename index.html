@@ -102,12 +102,12 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid 
 var YOGA='<svg viewBox="0 0 24 24" style="fill:none;stroke:var(--c);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="4.2" r="1.9" style="fill:var(--c);stroke:none"/><circle cx="14.1" cy="2.7" r="1.1" style="fill:var(--c);stroke:none"/><path d="M2.5 8.2H21.5"/><path d="M12 6.8V13" style="stroke-width:3.2"/><path d="M12 13L6.5 14.6V21.2"/><path d="M12 13L20.6 21.2"/></svg>';
 var MAX=8, LV=[0,0,35,68,100], W=["☀️","⛅","☁️","🌧️"], R=["😣","😐","🙂","😄"], X=[YOGA,"👟","🏋️","⛳"], A=["🍷","🍺","🍶"], ICONS={weather:W,rating:R,sport:X,alcohol:A}, VMAX={dot:1,level:4,weather:4,rating:4,sport:4,alcohol:3};
 var DEF=[
- {id:"med",name:"薬",color:"#8a6fd1",kind:"dot",show:true},
+ {id:"med",name:"HRT",color:"#8a6fd1",kind:"dot",show:true},
  {id:"gold",name:"GUTヘルス",color:"#e3b23c",kind:"dot",show:true},
- {id:"red",name:"生理",color:"#dc4a55",kind:"level",show:true},
- {id:"ex",name:"エクササイズ",color:"#ee8a3c",kind:"dot",show:true},
+ {id:"red",name:"FLOW",color:"#dc4a55",kind:"level",show:true},
+ {id:"ex",name:"エクササイズ",color:"#ee8a3c",kind:"sport",show:true},
  {id:"green",name:"ウェルネス",color:"#4fb07c",kind:"dot",show:true},
- {id:"mood",name:"朝の気分",color:"#4a8fe0",kind:"weather",show:true}];
+ {id:"mood",name:"睡眠",color:"#4a8fe0",kind:"rating",show:true}];
 var KEY="sticker-calendar-v2", S={cats:JSON.parse(JSON.stringify(DEF)),days:{}};
 try{
   var raw=localStorage.getItem(KEY);
@@ -227,7 +227,7 @@ $("done").onclick=closeSheet;
 $("scrim").addEventListener("click",function(e){if(e.target===this)closeSheet()});
 function openSet(){
   $("srows").innerHTML=S.cats.map(function(c,i){
-    return '<div class="row"><input type="color" value="'+c.color+'" data-sc="'+i+'" aria-label="色"><input type="text" value="'+esc(c.name)+'" data-sn="'+i+'" aria-label="名前"><select data-sk="'+i+'" aria-label="種類"><option value="dot"'+(c.kind=="dot"?" selected":"")+'>スタンプ</option><option value="level"'+(c.kind=="level"?" selected":"")+'>濃さ3段階</option><option value="weather"'+(c.kind=="weather"?" selected":"")+'>天気</option><option value="rating"'+(c.kind=="rating"?" selected":"")+'>4段階(顔)</option><option value="sport"'+(c.kind=="sport"?" selected":"")+'>運動アイコン</option><option value="alcohol"'+(c.kind=="alcohol"?" selected":"")+'>お酒アイコン</option></select><select data-ss="'+i+'" aria-label="形"><option value="dot"'+(c.shape=="drop"||c.shape=="patch"||c.shape=="tri"||c.shape=="heart"?"":" selected")+'>丸</option><option value="drop"'+(c.shape=="drop"?" selected":"")+'>涙型</option><option value="patch"'+(c.shape=="patch"?" selected":"")+'>角丸四角</option><option value="tri"'+(c.shape=="tri"?" selected":"")+'>角丸三角</option><option value="heart"'+(c.shape=="heart"?" selected":"")+'>ハート</option></select><button class="del" data-sd="'+i+'" aria-label="削除">×</button></div>';
+    return '<div class="row"><input type="color" value="'+c.color+'" data-sc="'+i+'" aria-label="色"><input type="text" value="'+esc(c.name)+'" data-sn="'+i+'" aria-label="名前"><select data-sk="'+i+'" aria-label="種類"><option value="dot"'+(c.kind=="dot"?" selected":"")+'>スタンプ</option><option value="level"'+(c.kind=="level"?" selected":"")+'>濃さ4段階</option><option value="weather"'+(c.kind=="weather"?" selected":"")+'>天気</option><option value="rating"'+(c.kind=="rating"?" selected":"")+'>4段階(顔)</option><option value="sport"'+(c.kind=="sport"?" selected":"")+'>運動アイコン</option><option value="alcohol"'+(c.kind=="alcohol"?" selected":"")+'>お酒アイコン</option></select><select data-ss="'+i+'" aria-label="形"><option value="dot"'+(c.shape=="drop"||c.shape=="patch"||c.shape=="tri"||c.shape=="heart"?"":" selected")+'>丸</option><option value="drop"'+(c.shape=="drop"?" selected":"")+'>涙型</option><option value="patch"'+(c.shape=="patch"?" selected":"")+'>角丸四角</option><option value="tri"'+(c.shape=="tri"?" selected":"")+'>角丸三角</option><option value="heart"'+(c.shape=="heart"?" selected":"")+'>ハート</option></select><button class="del" data-sd="'+i+'" aria-label="削除">×</button></div>';
   }).join("");
   $("add").textContent="＋ カテゴリを追加("+S.cats.length+"/"+MAX+")";
   $("add").disabled=S.cats.length>=MAX;
