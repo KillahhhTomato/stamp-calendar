@@ -288,7 +288,7 @@ $("imp").onclick=function(){var t=$("io");t.style.display="block";t.value="";t.p
 $("ioDo").onclick=function(){try{var o=JSON.parse($("io").value),d=o.data||o;if(!d.cats||!d.days)throw 0;S=d;norm();save();$("io").value="";closeSet()}catch(e){$("io").value="";$("io").placeholder=T("読み込めませんでした。書き出したテキスト全体を貼り付けてください")}};
 $("lang").onchange=function(){S.lang=this.value;renameDefaults();save();applyLang();render();openSet()};
 $("theme").onchange=function(){S.theme=this.value;save();applyTheme()};
-var lastW=0;if(window.ResizeObserver){new ResizeObserver(function(){var w=document.querySelector("main").clientWidth;if(w!==lastW){lastW=w;fit()}}).observe(document.querySelector("main"))}
+var lastW=0;if(window.ResizeObserver){new ResizeObserver(function(){requestAnimationFrame(function(){var w=document.querySelector("main").clientWidth;if(w!==lastW){lastW=w;fit()}})}).observe(document.querySelector("main"))}
 if(window.visualViewport)visualViewport.addEventListener("resize",fit);
 window.addEventListener("resize",fit);window.addEventListener("orientationchange",function(){setTimeout(function(){window.scrollTo(0,0);fit()},300);setTimeout(function(){window.scrollTo(0,0);fit()},900)});
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
